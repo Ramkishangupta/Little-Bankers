@@ -6,22 +6,22 @@ const FinancialAcademyGame = () => {
 
   const games = [
     {
-      id: 'chores',
-      title: 'Earn Money (Chores)',
-      description: 'Earn money by doing household chores.',
+      id: 'allowance-adventure',
+      title: 'Allowance Adventure',
+      description: 'A interactive game which will Help you to learn finace in a fun manner',
       image: 'https://via.placeholder.com/300x200.png?text=Chores+Image',
-      action: () => alert('Do Chores: Earn $5!')
+      action: () => alert('Allowance Adventure')
     },
     {
-      id: 'spending',
-      title: 'Spend Money (Candy)',
-      description: 'Buy some candy for $2.',
+      id: 'piggy-bankers',
+      title: 'Piggy Bnkers',
+      description: 'wuah wuah.',
       image: 'https://via.placeholder.com/300x200.png?text=Spending+Image',
-      action: () => alert('Buy Candy: Spend $2!')
+      action: () => alert('pig')
     },
     {
-      id: 'saving',
-      title: 'Save Money',
+      id: 'finance-adventure',
+      title: 'Finance Race',
       description: 'Save $5 and earn interest every 7 days.',
       image: 'https://via.placeholder.com/300x200.png?text=Saving+Image',
       action: () => alert('Save Money: Earn interest on $5!')

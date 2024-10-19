@@ -1,238 +1,238 @@
 .financial-academy-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .games-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 10px;
-  }
-  
-  .game-card {
-    background-color: #f0f8ff;
-    padding: 10px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-  }
-  
-  .game-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  .game-info {
-    margin-top: 10px;
-  }
-  
-  .game-info h3 {
-    color: #2196f3;
-    font-size: 1.5rem;
-  }
-  
-  .game-info p {
-    color: #333;
-    font-size: 1rem;
-  }
-  
-  .game-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .game-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .modal-content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    width: 400px;
-  }
-  
-  .modal-content h3 {
-    color: #2196f3;
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .modal-content p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-  }
-  
-  .modal-content button {
-    padding: 10px 20px;
-    margin: 10px;
-    background-color: #2196f3;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .modal-content button:hover {
-    background-color: #1769aa;
-  }
-  
-  .close-button {
-    background-color: #f44336;
-  }
-  
-  .close-button:hover {
-    background-color: #d32f2f;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-    /* Background for the entire page */
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 10px;
+}
+
+.game-card {
+  background-color: #f0f8ff;
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.game-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.game-info {
+  margin-top: 10px;
+}
+
+.game-info h3 {
+  color: #2196f3;
+  font-size: 1.5rem;
+}
+
+.game-info p {
+  color: #333;
+  font-size: 1rem;
+}
+
+.game-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.game-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 400px;
+}
+
+.modal-content h3 {
+  color: #2196f3;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.modal-content button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+  background-color: #1769aa;
+}
+
+.close-button {
+  background-color: #f44336;
+}
+
+.close-button:hover {
+  background-color: #d32f2f;
+
+  /* Background for the entire page */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #f0f8ff, #dff9fb); /* A gradient background */
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #f0f8ff, #dff9fb); /* A gradient background */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.financial-academy-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.9); /* White background with some transparency */
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Games Grid Layout */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 10px;
+}
+
+/* Individual Game Card */
+.game-card {
+  background-color: #f0f8ff;
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.game-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.game-info {
+  margin-top: 10px;
+}
+
+.game-info h3 {
+  color: #2196f3;
+  font-size: 1.5rem;
+}
+
+.game-info p {
+  color: #333;
+  font-size: 1rem;
+}
+
+/* Hover Effects for Game Card */
+.game-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal for Selected Game */
+.game-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 400px;
+}
+
+.modal-content h3 {
+  color: #2196f3;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* Modal Buttons */
+.modal-content button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+  background-color: #1769aa;
+}
+
+.close-button {
+  background-color: #f44336;
+}
+
+.close-button:hover {
+  background-color: #d32f2f;
+}  
   
-  .financial-academy-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.9); /* White background with some transparency */
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Games Grid Layout */
-  .games-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 10px;
-  }
-  
-  /* Individual Game Card */
-  .game-card {
-    background-color: #f0f8ff;
-    padding: 10px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-  }
-  
-  .game-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  .game-info {
-    margin-top: 10px;
-  }
-  
-  .game-info h3 {
-    color: #2196f3;
-    font-size: 1.5rem;
-  }
-  
-  .game-info p {
-    color: #333;
-    font-size: 1rem;
-  }
-  
-  /* Hover Effects for Game Card */
-  .game-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Modal for Selected Game */
-  .game-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .modal-content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    width: 400px;
-  }
-  
-  .modal-content h3 {
-    color: #2196f3;
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .modal-content p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-  }
-  
-  /* Modal Buttons */
-  .modal-content button {
-    padding: 10px 20px;
-    margin: 10px;
-    background-color: #2196f3;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .modal-content button:hover {
-    background-color: #1769aa;
-  }
-  
-  .close-button {
-    background-color: #f44336;
-  }
-  
-  .close-button:hover {
-    background-color: #d32f2f;
-  }  
-    
-  }
+}
