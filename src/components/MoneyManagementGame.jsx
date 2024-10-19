@@ -160,7 +160,7 @@ const MoneyManagementGame = ({ onEarnCoins }) => {
   return (
     <div className="game-container">
       <h1 className="game-title">
-        <Coins className="game-icon" /> Money Management Game
+        <Coins className="game-icon" /> Guess The Image
       </h1>
       {showScore ? (
         <div className="score-card">
