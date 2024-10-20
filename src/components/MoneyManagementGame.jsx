@@ -9,7 +9,7 @@ const gameData = [
     image: "https://images.unsplash.com/photo-1574607383476-f517f260d30b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGlnZ3klMjBiYW5rfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
     question: "What is this object used for?",
     options: [
-      { id: 1, text: "Coins in the hands", correct: true },
+      { id: 1, text: "Savings ", correct: true },
       { id: 2, text: "Cooking food", correct: false },
       { id: 3, text: "Playing music", correct: false },
       { id: 4, text: "Telling time", correct: false },
@@ -40,7 +40,7 @@ const gameData = [
   {
     id: 4,
     image: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d2FsbGV0fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-    question: "What do you keep in this item?",
+    question: "What Is there in the Screen",
     options: [
       { id: 1, text: "Mobile,paper and coffe", correct: true },
       { id: 2, text: "Food", correct: false },

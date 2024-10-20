@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { auth } from '../config/firebase-config';
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -17,8 +18,6 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
-
-    const auth = getAuth();
 
     // Validate form
     if (!username || !password || (!isLogin && !email)) {
