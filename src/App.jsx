@@ -34,7 +34,7 @@ const App = () => {
           <Routes>
             {/* Render LoadingPage if loading is not complete */}
             <Route 
-              path="/" 
+              path="/Little-Bankers/" 
               element={!loadingComplete ? <LoadingPage onLoadingComplete={handleLoadingComplete} /> : <Dashboard />} 
             />
             <Route path="/dashboard" element={<Dashboard />} />
