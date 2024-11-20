@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
-import { auth, googleProvider, facebookProvider, twitterProvider } from '../config/firebase-config'; // Import providers from config.js
+import { auth, googleProvider, facebookProvider, twitterProvider } from '../config/firebase-config';
 import googleicon from "../assets/google-icon.png";
 import facebookicon from "../assets/facebook-icon.png";
 import twittericon from "../assets/twitter-icon.png";
@@ -16,13 +16,12 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
-  const navigate = useNavigate(); // Hook to navigate to another route
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
 
-    // Validate form
     if (!username || !password || (!isLogin && !email)) {
       setError('Please fill in all fields.');
       return;
@@ -38,21 +37,40 @@ const LoginPage = () => {
       return;
     }
 
-    // Login or Registration logic
     if (isLogin) {
       // Login with Firebase Auth
       signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
+        .then((result) => {
+          const user = result.user;
           console.log('Login successful!');
-          navigate('/dashboard'); // Redirect to dashboard on success
+          localStorage.setItem(
+            'user',
+            JSON.stringify({
+              userId: user.uid,
+              userName: user.displayName || username,
+              profilePhoto: user.photoURL || '',
+              isAuth: true,
+            })
+          );
+          navigate('/dashboard');
         })
         .catch((err) => setError(err.message));
     } else {
       // Register with Firebase Auth
       createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
+        .then((result) => {
+          const user = result.user;
           console.log('Registration successful!');
-          navigate('/dashboard'); // Redirect to dashboard on success
+          localStorage.setItem(
+            'user',
+            JSON.stringify({
+              userId: user.uid,
+              userName: username,
+              profilePhoto: '',
+              isAuth: true,
+            })
+          );
+          navigate('/dashboard');
         })
         .catch((err) => setError(err.message));
     }
@@ -61,8 +79,18 @@ const LoginPage = () => {
   const handleSocialLogin = (provider) => {
     signInWithPopup(auth, provider)
       .then((result) => {
+        const user = result.user;
         console.log(`${provider.providerId} login successful!`);
-        navigate('/dashboard'); // Redirect to dashboard on success
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            userId: user.uid,
+            userName: user.displayName,
+            profilePhoto: user.photoURL,
+            isAuth: true,
+          })
+        );
+        navigate('/dashboard');
       })
       .catch((err) => setError(err.message));
   };
@@ -78,10 +106,10 @@ const LoginPage = () => {
       <h1 className="title">Little Bankers</h1>
       <div className="logo-container">
         <svg className="logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 5C12 3.34315 10.6569 2 9 2H3C2.44772 2 2 2.44772 2 3V9C2 10.6569 3.34315 12 5 12H9C10.6569 12 12 10.6569 12 9V5Z" fill="#FCD34D"/>
-          <path d="M12 15C12 13.3431 13.3431 12 15 12H21C21.5523 12 22 12.4477 22 13V19C22 20.6569 20.6569 22 19 22H15C13.3431 22 12 20.6569 12 19V15Z" fill="#34D399"/>
-          <path d="M5 22C3.34315 22 2 20.6569 2 19V15C2 13.3431 3.34315 12 5 12H9C10.6569 12 12 13.3431 12 15V19C12 20.6569 10.6569 22 9 22H5Z" fill="#60A5FA"/>
-          <path d="M15 2C13.3431 2 12 3.34315 12 5V9C12 10.6569 13.3431 12 15 12H19C20.6569 12 22 10.6569 22 9V3C22 2.44772 21.5523 2 21 2H15Z" fill="#F472B6"/>
+          <path d="M12 5C12 3.34315 10.6569 2 9 2H3C2.44772 2 2 2.44772 2 3V9C2 10.6569 3.34315 12 5 12H9C10.6569 12 12 10.6569 12 9V5Z" fill="#FCD34D" />
+          <path d="M12 15C12 13.3431 13.3431 12 15 12H21C21.5523 12 22 12.4477 22 13V19C22 20.6569 20.6569 22 19 22H15C13.3431 22 12 20.6569 12 19V15Z" fill="#34D399" />
+          <path d="M5 22C3.34315 22 2 20.6569 2 19V15C2 13.3431 3.34315 12 5 12H9C10.6569 12 12 13.3431 12 15V19C12 20.6569 10.6569 22 9 22H5Z" fill="#60A5FA" />
+          <path d="M15 2C13.3431 2 12 3.34315 12 5V9C12 10.6569 13.3431 12 15 12H19C20.6569 12 22 10.6569 22 9V3C22 2.44772 21.5523 2 21 2H15Z" fill="#F472B6" />
         </svg>
       </div>
       <form onSubmit={handleSubmit} className="form">
@@ -156,8 +184,6 @@ const LoginPage = () => {
           <a href="#" className="forgot-password-link">Forgot your password?</a>
         </div>
       )}
-
-      {/* Social Login Buttons */}
       <div className="social-login">
         <button className="social-button google" onClick={() => handleSocialLogin(googleProvider)}>
           <img src={googleicon} alt="Google" className="social-icon" />
