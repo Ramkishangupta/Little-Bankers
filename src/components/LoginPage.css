@@ -180,6 +180,35 @@
   color: #059669;
 }
 
+.social-login {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Space between icons */
+}
+
+.social-button {
+  background: none; /* Remove background */
+  border: none; /* Remove border */
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.social-button:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+.social-icon {
+  width: 40px; /* Icon size */
+  height: 40px;
+}
+
+
 @keyframes bounce {
   0%, 100% {
     transform: translateY(-25%);

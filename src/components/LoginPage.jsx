@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../config/firebase-config';
+import { auth, googleProvider, facebookProvider, twitterProvider } from '../config/firebase-config'; // Import providers from config.js
+import googleicon from "../assets/google-icon.png";
+import facebookicon from "../assets/facebook-icon.png";
+import twittericon from "../assets/twitter-icon.png";
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -53,6 +56,15 @@ const LoginPage = () => {
         })
         .catch((err) => setError(err.message));
     }
+  };
+
+  const handleSocialLogin = (provider) => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(`${provider.providerId} login successful!`);
+        navigate('/dashboard'); // Redirect to dashboard on success
+      })
+      .catch((err) => setError(err.message));
   };
 
   const toggleMode = () => {
@@ -144,6 +156,19 @@ const LoginPage = () => {
           <a href="#" className="forgot-password-link">Forgot your password?</a>
         </div>
       )}
+
+      {/* Social Login Buttons */}
+      <div className="social-login">
+        <button className="social-button google" onClick={() => handleSocialLogin(googleProvider)}>
+          <img src={googleicon} alt="Google" className="social-icon" />
+        </button>
+        <button className="social-button facebook" onClick={() => handleSocialLogin(facebookProvider)}>
+          <img src={facebookicon} alt="Facebook" className="social-icon" />
+        </button>
+        <button className="social-button twitter" onClick={() => handleSocialLogin(twitterProvider)}>
+          <img src={twittericon} alt="Twitter" className="social-icon" />
+        </button>
+      </div>
     </div>
   );
 };

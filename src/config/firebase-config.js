@@ -1,6 +1,6 @@
-// Import the functions you need from the SDKs you need
+// Import the functions you need from Firebase SDK
 import { initializeApp } from "firebase/app";
-import { getAuth,GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, FacebookAuthProvider, TwitterAuthProvider, signInWithPopup } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,7 +17,13 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth=getAuth(app);
-//firebase login 
-//firebase init 
-//firebase deploy
+
+// Firebase Auth instance
+const auth = getAuth(app);
+
+// Authentication Providers
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
+const twitterProvider = new TwitterAuthProvider();
+
+export { auth, googleProvider, facebookProvider, twitterProvider };
