@@ -6,11 +6,11 @@ const Dashboard = () => {
   const navigate = useNavigate(); // Hook to get the navigate function
 
   const handleQuizRedirect = () => {
-    navigate('/quiz'); // Redirect to /quiz
+    navigate('/Little-Bankers/quiz'); // Redirect to /quiz
   };
 
   const handleSimulationRedirect = () => {
-    navigate('/simulation'); // Redirect to /simulation
+    navigate('/Little-Bankers/simulation'); // Redirect to /simulation
   };
 
   return (
