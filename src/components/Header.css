@@ -1,3 +1,43 @@
-.div{
+/* Flex container for the right section (coin counter and profile picture) */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between coin and profile picture */
+  }
+  
+  /* Coin counter styling */
+  .coin-counter {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between the coin icon and the count */
+  }
+  
+  /* Profile button styling */
+  .profile-icon {
+    width: 32px; /* Adjust size as needed */
+    height: 32px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  /* Profile picture styling */
+  .profile-pic {
+    /* margin-top: 3px; */
+    width: 32px; /* Adjust size as needed */
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+  }
+  
+  .profile-pic:hover {
+    border-color: #aaa; /* Add hover effect */
+  }
+  
+  .div{
     gap: 15px;
-}
+  }
