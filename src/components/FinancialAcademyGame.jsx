@@ -28,9 +28,9 @@ const FinancialAcademyGame = () => {
   ];
 
   // Update the action for the first game to navigate to StockMarketGame
-  games[0].action = () => navigate('/stock-market-game'); // Navigate to Stock Market Game
-  games[1].action = () => navigate('/currency-match-game');
-  games[2].action = () => navigate('/money-management');
+  games[0].action = () => navigate('/Little-Bankers/stock-market-game'); // Navigate to Stock Market Game
+  games[1].action = () => navigate('/Little-Bankers/currency-match-game');
+  games[2].action = () => navigate('/Little-Bankers/money-management');
 
   const openGame = (game) => {
     setSelectedGame(game);
