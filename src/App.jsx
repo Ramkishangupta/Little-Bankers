@@ -37,13 +37,13 @@ const App = () => {
               path="/Little-Bankers/" 
               element={!loadingComplete ? <LoadingPage onLoadingComplete={handleLoadingComplete} /> : <Dashboard />} 
             />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/quiz" element={<Quiz onComplete={handleQuizComplete} onEarnCoins={handleEarnCoins} />} />
-            <Route path="/simulation" element={<FinancialAcademyGame />} />
-            <Route path="/stock-market-game" element={<StockMarketGame totalCoins={totalCoins} />} />
-            <Route path="/currency-match-game" element={<CurrencyMatch />} />
-            <Route path="/login-page" element={<LoginPage />} />
-            <Route path="/money-management" element={<MoneyManagementGame totalCoins={totalCoins} onEarnCoins={handleEarnCoins} />} />
+            <Route path="/Little-Bankers/dashboard" element={<Dashboard />} />
+            <Route path="/Little-Bankers/quiz" element={<Quiz onComplete={handleQuizComplete} onEarnCoins={handleEarnCoins} />} />
+            <Route path="/Little-Bankers/simulation" element={<FinancialAcademyGame />} />
+            <Route path="/Little-Bankers/stock-market-game" element={<StockMarketGame totalCoins={totalCoins} />} />
+            <Route path="/Little-Bankers/currency-match-game" element={<CurrencyMatch />} />
+            <Route path="/Little-Bankers/login-page" element={<LoginPage />} />
+            <Route path="/Little-Bankers/money-management" element={<MoneyManagementGame totalCoins={totalCoins} onEarnCoins={handleEarnCoins} />} />
             </Routes>
       </div>
     </Router>
