@@ -6,7 +6,7 @@ import useGetUserInfo from '../hooks/useGetUserInfo'; // Import custom hook
 
 const Header = ({ totalCoins }) => {
   const navigate = useNavigate();
-  const { userId, userName, profilePhoto, isAuth } = useGetUserInfo(); // Fetch user data from custom hook
+  const { userId, userName, profilePhoto, isAuth } = useGetUserInfo();
   return (
     <header className="div">
       <h1>Little Bankers</h1>
@@ -20,7 +20,7 @@ const Header = ({ totalCoins }) => {
           <span role="img" aria-label="coin">🪙</span> {totalCoins}
         </div>
         <button
-          onClick={() => (isAuth ? navigate('/profile') : navigate('/Little-Bankers/login-page'))} // Navigate to profile or login page
+          onClick={() => (isAuth ? navigate('/Little-Bankers/dashboard') : navigate('/Little-Bankers/login-page'))} // Navigate to profile or login page
           className="profile-icon"
           aria-label="Profile"
         >

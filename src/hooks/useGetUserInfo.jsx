@@ -1,5 +1,5 @@
 const useGetUserInfo = () => {
-    const authInfo = JSON.parse(localStorage.getItem("auth")) || {};
+    const authInfo = JSON.parse(localStorage.getItem("user")) || {};
 
     const { userId, userName, profilePhoto, isAuth } = authInfo;
 
