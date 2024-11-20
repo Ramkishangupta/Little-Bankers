@@ -148,3 +148,56 @@
     color: #333;
     margin-top: 10px;
   }
+      /* Responsive Adjustments for Phones */
+@media (max-width: 768px) {
+  .title {
+    font-size: 7vw;
+  }
+
+  .coin {
+    font-size: 7vw;
+  }
+
+  .piggy-bank {
+    font-size: 11vw;
+  }
+
+  .calculator {
+    font-size: 9vw;
+  }
+
+  .loading-bar2 {
+    height: 3vw;
+  }
+
+  .loading-text {
+    font-size: 5vw;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .title {
+    font-size: 7vw;
+  }
+
+  .coin {
+    font-size: 8vw;
+  }
+
+  .piggy-bank {
+    font-size: 12vw;
+  }
+
+  .calculator {
+    font-size: 10vw;
+  }
+
+  .loading-bar2 {
+    height: 4vw;
+  }
+
+  .loading-text {
+    font-size: 4vw;
+  }
+}
