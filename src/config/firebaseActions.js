@@ -28,19 +28,29 @@ export const initializeUserScore = async (userId) => {
 
 
 
-// Update user score in Firestore
 export const updateUserScore = async (userId, newScore) => {
   if (!userId) {
     console.error("User is not authenticated.");
     return;
   }
 
-  const userRef = doc(firestore, "scores", userId); // Match the document ID to the userId
+  const userRef = doc(firestore, "scores", userId); // Reference to Firestore document
 
   try {
-    await updateDoc(userRef, { score: newScore });
-    console.log("Score updated successfully!");
+    // Check if the document exists
+    const userDoc = await getDoc(userRef);
+
+    if (userDoc.exists()) {
+      // Update the document if it exists
+      await updateDoc(userRef, { score: newScore });
+      console.log("Score updated successfully!");
+    } else {
+      // Create the document if it doesn't exist
+      await setDoc(userRef, { score: newScore });
+      console.log("New score document created successfully!");
+    }
   } catch (error) {
     console.error("Error updating score:", error);
+    throw new Error("Error updating score: " + error.message);
   }
 };
