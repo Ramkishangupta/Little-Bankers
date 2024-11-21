@@ -91,7 +91,7 @@ const LoginPage = () => {
       );
 
       // Initialize the user's score
-      await initializeUserScore(user.uid);
+      await initializeUserScore(user.uid,user.displayName,user.photoURL);
 
       navigate('/Little-Bankers/dashboard');
     } catch (err) {
