@@ -10,13 +10,20 @@ import LoadingPage from './components/LoadingPage';
 import CurrencyMatch from './components/CurrencyMatch';
 import MoneyManagementGame from './components/MoneyManagementGame';
 import LoginPage from './components/LoginPage';
+import {updateUserScore} from './config/firebaseActions';
+import useGetUserInfo from './hooks/useGetUserInfo';
 
 const App = () => {
   const [totalCoins, setTotalCoins] = useState(0);
   const [loadingComplete, setLoadingComplete] = useState(false); // State to track loading completion
+  const { userId } = useGetUserInfo();
 
   const handleEarnCoins = (amount) => {
-    setTotalCoins((prevCoins) => prevCoins + amount);
+    const updatedCoins = totalCoins + amount;
+    setTotalCoins(updatedCoins);
+    if (userId) {
+      updateUserScore(userId, updatedCoins);
+    }
   };
 
   const handleLoadingComplete = () => {

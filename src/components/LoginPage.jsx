@@ -3,6 +3,7 @@ import { Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { auth, googleProvider, facebookProvider, twitterProvider } from '../config/firebase-config';
+import { initializeUserScore } from "../config/firebaseActions"; // Import the function
 import googleicon from "../assets/google-icon.png";
 import facebookicon from "../assets/facebook-icon.png";
 import twittericon from "../assets/twitter-icon.png";
@@ -18,7 +19,13 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  // Define the toggleMode function
+  const toggleMode = () => {
+    setIsLogin(!isLogin);
+    setError('');
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
@@ -37,67 +44,59 @@ const LoginPage = () => {
       return;
     }
 
-    if (isLogin) {
-      // Login with Firebase Auth
-      signInWithEmailAndPassword(auth, email, password)
-        .then((result) => {
-          const user = result.user;
-          console.log('Login successful!');
-          localStorage.setItem(
-            'user',
-            JSON.stringify({
-              userId: user.uid,
-              userName: user.displayName || username,
-              profilePhoto: user.photoURL || '',
-              isAuth: true,
-            })
-          );
-          navigate('/dashboard');
+    try {
+      let user;
+      if (isLogin) {
+        const result = await signInWithEmailAndPassword(auth, email, password);
+        user = result.user;
+      } else {
+        const result = await createUserWithEmailAndPassword(auth, email, password);
+        user = result.user;
+      }
+
+      console.log(`${isLogin ? 'Login' : 'Registration'} successful!`);
+      localStorage.setItem(
+        'user',
+        JSON.stringify({
+          userId: user.uid,
+          userName: isLogin ? user.displayName || username : username,
+          profilePhoto: user.photoURL || '',
+          isAuth: true,
         })
-        .catch((err) => setError(err.message));
-    } else {
-      // Register with Firebase Auth
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((result) => {
-          const user = result.user;
-          console.log('Registration successful!');
-          localStorage.setItem(
-            'user',
-            JSON.stringify({
-              userId: user.uid,
-              userName: username,
-              profilePhoto: '',
-              isAuth: true,
-            })
-          );
-          navigate('/dashboard');
-        })
-        .catch((err) => setError(err.message));
+      );
+
+      // Initialize the user's score
+      await initializeUserScore(user.uid);
+
+      navigate('/Little-Bankers/dashboard');
+    } catch (err) {
+      setError(err.message);
     }
   };
 
-  const handleSocialLogin = (provider) => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        console.log(`${provider.providerId} login successful!`);
-        localStorage.setItem(
-          'user',
-          JSON.stringify({
-            userId: user.uid,
-            userName: user.displayName,
-            profilePhoto: user.photoURL,
-            isAuth: true,
-          })
-        );
-        navigate('/dashboard');
-      })
-      .catch((err) => setError(err.message));
-  };
+  const handleSocialLogin = async (provider) => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
 
-  const toggleMode = () => {
-    setIsLogin(!isLogin);
-    setError('');
+      console.log(`${provider.providerId} login successful!`);
+      localStorage.setItem(
+        'user',
+        JSON.stringify({
+          userId: user.uid,
+          userName: user.displayName,
+          profilePhoto: user.photoURL,
+          isAuth: true,
+        })
+      );
+
+      // Initialize the user's score
+      await initializeUserScore(user.uid);
+
+      navigate('/Little-Bankers/dashboard');
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
