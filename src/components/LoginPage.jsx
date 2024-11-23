@@ -16,6 +16,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [photo, setPhoto] = useState('https://wallpapers.com/images/featured/gaming-profile-pictures-xpcd6q5uud2i45v8.jpg');
 
   const navigate = useNavigate();
 
@@ -29,10 +30,18 @@ const LoginPage = () => {
     e.preventDefault();
     setError('');
 
-    if (!username || !password || (!isLogin && !email)) {
+    // Validation based on the current mode
+  if (isLogin) {
+    if (!email || !password) {
       setError('Please fill in all fields.');
       return;
     }
+  } else {
+    if (!username || !email || !password) {
+      setError('Please fill in all fields.');
+      return;
+    }
+  }
 
     if (password.length < 8) {
       setError('Password must be at least 8 characters long.');
@@ -60,13 +69,13 @@ const LoginPage = () => {
         JSON.stringify({
           userId: user.uid,
           userName: isLogin ? user.displayName || username : username,
-          profilePhoto: user.photoURL || '',
+          profilePhoto: user.photoURL || photo,
           isAuth: true,
         })
       );
 
       // Initialize the user's score
-      await initializeUserScore(user.uid);
+      await initializeUserScore(user.uid, username || user.displayName || "Anonymous", photo);
 
       navigate('/Little-Bankers/dashboard');
     } catch (err) {
@@ -112,67 +121,67 @@ const LoginPage = () => {
         </svg>
       </div>
       <form onSubmit={handleSubmit} className="form">
-        <div className="input-group">
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="input"
-            placeholder="Username"
-            required
-          />
-          <label htmlFor="username" className="label">
-            Username
-          </label>
-        </div>
-        {!isLogin && (
-          <div className="input-group">
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="input"
-              placeholder="Email"
-              required
-            />
-            <label htmlFor="email" className="label">
-              Email
-            </label>
-          </div>
-        )}
-        <div className="input-group">
-          <input
-            type={showPassword ? "text" : "password"}
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="input"
-            placeholder="Password"
-            required
-          />
-          <label htmlFor="password" className="label">
-            Password
-          </label>
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="password-toggle"
-          >
-            {showPassword ? <EyeOff className="icon" /> : <Eye className="icon" />}
-          </button>
-        </div>
-        {error && (
-          <div className="error">
-            <AlertCircle className="error-icon" />
-            {error}
-          </div>
-        )}
-        <button type="submit" className="submit-button">
-          {isLogin ? 'Log In' : 'Register'}
-        </button>
-      </form>
+  {!isLogin && (
+    <div className="input-group">
+      <input
+        type="text"
+        id="username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        className="input"
+        placeholder="Username"
+        required
+      />
+      <label htmlFor="username" className="label">
+        Username
+      </label>
+    </div>
+  )}
+  <div className="input-group">
+    <input
+      type="email"
+      id="email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      className="input"
+      placeholder="Email"
+      required
+    />
+    <label htmlFor="email" className="label">
+      Email
+    </label>
+  </div>
+  <div className="input-group">
+    <input
+      type={showPassword ? "text" : "password"}
+      id="password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      className="input"
+      placeholder="Password"
+      required
+    />
+    <label htmlFor="password" className="label">
+      Password
+    </label>
+    <button
+      type="button"
+      onClick={() => setShowPassword(!showPassword)}
+      className="password-toggle"
+    >
+      {showPassword ? <EyeOff className="icon" /> : <Eye className="icon" />}
+    </button>
+  </div>
+  {error && (
+    <div className="error">
+      <AlertCircle className="error-icon" />
+      {error}
+    </div>
+  )}
+  <button type="submit" className="submit-button">
+    {isLogin ? 'Log In' : 'Register'}
+  </button>
+</form>
       <div className="toggle-mode">
         <button onClick={toggleMode} className="toggle-button">
           {isLogin ? "Don't have an account? Register" : "Already have an account? Log in"}
