@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
@@ -10,13 +10,24 @@ import LoadingPage from './components/LoadingPage';
 import CurrencyMatch from './components/CurrencyMatch';
 import MoneyManagementGame from './components/MoneyManagementGame';
 import LoginPage from './components/LoginPage';
-import {updateUserScore} from './config/firebaseActions';
+import {updateUserScore, fetchUserScore} from './config/firebaseActions';
 import useGetUserInfo from './hooks/useGetUserInfo';
 
 const App = () => {
   const [totalCoins, setTotalCoins] = useState(0);
   const [loadingComplete, setLoadingComplete] = useState(false); // State to track loading completion
   const { userId } = useGetUserInfo();
+
+  // Fetch user score when component mounts
+  useEffect(() => {
+    const fetchScore = async () => {
+      if (userId) {
+        const userScore = await fetchUserScore(userId);
+        setTotalCoins(userScore);
+      }
+    };
+    fetchScore();
+  }, [userId]);
 
   const handleEarnCoins = (amount) => {
     const updatedCoins = totalCoins + amount;

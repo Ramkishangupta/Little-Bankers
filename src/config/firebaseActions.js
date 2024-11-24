@@ -46,3 +46,25 @@ export const updateUserScore = async (userId, newScore) => {
     throw new Error("Error updating score: " + error.message);
   }
 };
+
+export const fetchUserScore = async (userId) => {
+  if (!userId) {
+    console.error("User is not authenticated.");
+    return 0; // Default to 0 if the user is not authenticated
+  }
+
+  const userRef = doc(firestore, "users", userId);
+
+  try {
+    const userDoc = await getDoc(userRef);
+    if (userDoc.exists()) {
+      return userDoc.data().score || 0; // Return score, default to 0 if not set
+    } else {
+      console.warn("User document does not exist.");
+      return 0;
+    }
+  } catch (error) {
+    console.error("Error fetching user score:", error);
+    return 0;
+  }
+};
