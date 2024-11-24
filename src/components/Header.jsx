@@ -20,7 +20,7 @@ const Header = ({ totalCoins }) => {
           <span role="img" aria-label="coin">🪙</span> {totalCoins}
         </div>
         <button
-          onClick={() => (isAuth ? navigate('/Little-Bankers/dashboard') : navigate('/Little-Bankers/login-page'))} // Navigate to profile or login page
+          onClick={() => (isAuth ? navigate('/Little-Bankers/leaderboard') : navigate('/Little-Bankers/login-page'))} // Navigate to profile or login page
           className="profile-icon"
           aria-label="Profile"
         >
