@@ -63,7 +63,7 @@ const App = () => {
             <Route path="/Little-Bankers/currency-match-game" element={<CurrencyMatch />} />
             <Route path="/Little-Bankers/login-page" element={<LoginPage />} />
             <Route path="/Little-Bankers/money-management" element={<MoneyManagementGame totalCoins={totalCoins} onEarnCoins={handleEarnCoins} />} />
-            <Route path="/Little-Bankers/Leaderboard" element={<Leaderboard />} />
+            <Route path="/Little-Bankers/leaderboard" element={<Leaderboard />} />
             </Routes>
       </div>
     </Router>
