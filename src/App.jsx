@@ -12,6 +12,7 @@ import MoneyManagementGame from './components/MoneyManagementGame';
 import LoginPage from './components/LoginPage';
 import {updateUserScore, fetchUserScore} from './config/firebaseActions';
 import useGetUserInfo from './hooks/useGetUserInfo';
+import Leaderboard from './components/Leaderboard';
 
 const App = () => {
   const [totalCoins, setTotalCoins] = useState(0);
@@ -62,6 +63,7 @@ const App = () => {
             <Route path="/Little-Bankers/currency-match-game" element={<CurrencyMatch />} />
             <Route path="/Little-Bankers/login-page" element={<LoginPage />} />
             <Route path="/Little-Bankers/money-management" element={<MoneyManagementGame totalCoins={totalCoins} onEarnCoins={handleEarnCoins} />} />
+            <Route path="/Little-Bankers/Leaderboard" element={<Leaderboard />} />
             </Routes>
       </div>
     </Router>
