@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import './Quiz.css'; // Ensure to import the CSS file
 
 const Quiz = ({ onComplete, onEarnCoins }) => {
@@ -11,7 +11,7 @@ const Quiz = ({ onComplete, onEarnCoins }) => {
   const [waitingForNext, setWaitingForNext] = useState(false); // Track if waiting for the next button
   const [answered, setAnswered] = useState(false); // Track if the question has been answered
 
-  const questions = [
+  const questions = useMemo(() => [
     {
       question: "What is the money you save for future use called?",
       options: ["Investment", "Spending", "Savings", "Debt"],
@@ -62,21 +62,10 @@ const Quiz = ({ onComplete, onEarnCoins }) => {
       options: ["You save", "You go into debt", "You get richer", "You have more money"],
       correctAnswer: 1,
     },
-  ];
+  ], []);
   
 
-  useEffect(() => {
-    if (timeLeft > 0 && !showScore && !waitingForNext) {
-      const timer = setInterval(() => {
-        setTimeLeft((prevTime) => prevTime - 1);
-      }, 1000);
-      return () => clearInterval(timer); // Clear the timer on component unmount
-    } else if (timeLeft === 0) {
-      handleAnswerClick(-1); // Handle timeout by selecting an incorrect answer
-    }
-  }, [timeLeft, showScore, waitingForNext]);
-
-  const handleAnswerClick = (selectedAnswer) => {
+  const handleAnswerClick = useCallback((selectedAnswer) => {
     if (answered) return; // Prevent further clicks if already answered
 
     const correctAnswer = questions[currentQuestion].correctAnswer;
@@ -96,7 +85,18 @@ const Quiz = ({ onComplete, onEarnCoins }) => {
     setAnswered(true); // Mark this question as answered
     setWaitingForNext(true); // Show the Next button
     setTimeLeft(10); // Reset timer for next question
-  };
+  }, [answered, questions, currentQuestion, onEarnCoins]);
+
+  useEffect(() => {
+    if (timeLeft > 0 && !showScore && !waitingForNext) {
+      const timer = setInterval(() => {
+        setTimeLeft((prevTime) => prevTime - 1);
+      }, 1000);
+      return () => clearInterval(timer); // Clear the timer on component unmount
+    } else if (timeLeft === 0) {
+      handleAnswerClick(-1); // Handle timeout by selecting an incorrect answer
+    }
+  }, [timeLeft, showScore, waitingForNext, handleAnswerClick]);
 
   const moveToNextQuestion = () => {
     const nextQuestion = currentQuestion + 1;

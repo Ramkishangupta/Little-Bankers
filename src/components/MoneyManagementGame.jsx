@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Coins } from 'lucide-react';
 import GameCard from './GameCard';
 import './MoneyManagementGame.css';
@@ -20,7 +20,7 @@ const gameData = [
     image: "https://images.unsplash.com/photo-1561414927-6d86591d0c4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y3JlZGl0JTIwY2FyZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
     question: "What is this item called?",
     options: [
-      { id: 1, text: "coins ", correct: true },
+      { id: 1, text: "Credit Card", correct: true },
       { id: 2, text: "Book", correct: false },
       { id: 3, text: "Phone", correct: false },
       { id: 4, text: "Toy", correct: false },
@@ -31,7 +31,7 @@ const gameData = [
     image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXRtfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
     question: "What can you do with this machine?",
     options: [
-      { id: 1, text: "Mobile Calculator", correct: true },
+      { id: 1, text: "Withdraw Money", correct: true },
       { id: 2, text: "Buy groceries", correct: false },
       { id: 3, text: "Paper plane", correct: false },
       { id: 4, text: "Make phone calls", correct: false },
@@ -64,10 +64,10 @@ const gameData = [
     image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bW9uZXklMjBqYXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
     question: "What is this jar used for?",
     options: [
-      { id: 1, text: "Money plant", correct: true },
+      { id: 1, text: "Saving money", correct: true },
       { id: 2, text: "Storing cookies", correct: false },
       { id: 3, text: "Keeping toys", correct: false },
-      { id: 4, text: "Saving money", correct: false },
+      { id: 4, text: "Money plant", correct: false },
     ],
   },
   {
@@ -86,9 +86,9 @@ const gameData = [
     image: "https://images.unsplash.com/photo-1621981386829-9b458a2cddde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29pbnN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
     question: "What are these round metal objects?",
     options: [
-      { id: 1, text: "Euro", correct: true },
+      { id: 1, text: "Coins", correct: true },
       { id: 2, text: "Buttons", correct: false },
-      { id: 3, text: "Coins", correct: false },
+      { id: 3, text: "Euro", correct: false },
       { id: 4, text: "Candies", correct: false },
     ],
   },
@@ -97,10 +97,10 @@ const gameData = [
     image: "https://images.unsplash.com/photo-1556742031-c6961e8560b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFua3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
     question: "What is this building called?",
     options: [
-      { id: 1, text: "DebitCard Scanner", correct: true },
-      { id: 2, text: "Pizza", correct: false },
-      { id: 3, text: "Toy", correct: false },
-      { id: 4, text: "Restaurant", correct: false },
+      { id: 1, text: "Bank", correct: true },
+      { id: 2, text: "Restaurant", correct: false },
+      { id: 3, text: "School", correct: false },
+      { id: 4, text: "Hospital", correct: false },
     ],
   },
   {
@@ -108,7 +108,7 @@ const gameData = [
     image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8b25saW5lJTIwYmFua2luZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
     question: "What can you do with this device?",
     options: [
-      { id: 1, text: "Writing", correct: true },
+      { id: 1, text: "Online Banking", correct: true },
       { id: 2, text: "Cook food", correct: false },
       { id: 3, text: "Drive a car", correct: false },
       { id: 4, text: "Play sports", correct: false },

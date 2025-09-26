@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { collection, getDocs } from "firebase/firestore";
 import { firestore } from '../config/firebase-config'; // Update path to your Firebase config file
 import './Leaderboard.css';

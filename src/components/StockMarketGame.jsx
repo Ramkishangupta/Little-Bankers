@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { TrendingUp, DollarSign, BarChart2 } from 'lucide-react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
@@ -18,7 +18,6 @@ const StockMarketGame = ({ totalCoins }) => {
   const [stocks, setStocks] = useState(initialStocks);
   const [piggyBank, setPiggyBank] = useState(totalCoins);
   const [day, setDay] = useState(1);
-  const [netWorthHistory, setNetWorthHistory] = useState([totalCoins]);
   const [showTip, setShowTip] = useState(false);
   const [tipIndex, setTipIndex] = useState(0);
 
@@ -41,7 +40,6 @@ const StockMarketGame = ({ totalCoins }) => {
 
   useEffect(() => {
     const newNetWorth = calculateNetWorth();
-    setNetWorthHistory(prev => [...prev, newNetWorth]);
     if (newNetWorth >= 200) {
       confetti({
         particleCount: 100,
@@ -55,7 +53,7 @@ const StockMarketGame = ({ totalCoins }) => {
       setTipIndex(prevIndex => (prevIndex + 1) % tips.length);
       setTimeout(() => setShowTip(false), 5000);
     }
-  }, [stocks, piggyBank, day]);
+  }, [stocks, piggyBank, day, calculateNetWorth, tips.length]);
 
   const updateStockPrices = () => {
     setStocks(prevStocks =>
@@ -93,9 +91,9 @@ const StockMarketGame = ({ totalCoins }) => {
     }
   };
 
-  const calculateNetWorth = () => {
+  const calculateNetWorth = useCallback(() => {
     return Number((piggyBank + stocks.reduce((total, stock) => total + stock.price * stock.shares, 0)).toFixed(2));
-  };
+  }, [piggyBank, stocks]);
 
   return (
     <div className="game-container">

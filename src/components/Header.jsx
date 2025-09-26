@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Header.css';
 import defaultProfilePic from '../assets/Profile.png'; // Default profile picture
@@ -6,7 +5,7 @@ import useGetUserInfo from '../hooks/useGetUserInfo'; // Import custom hook
 
 const Header = ({ totalCoins }) => {
   const navigate = useNavigate();
-  const { userId, userName, profilePhoto, isAuth } = useGetUserInfo();
+  const { userName, profilePhoto, isAuth } = useGetUserInfo();
   return (
     <header className="div">
       <h1>Little Bankers</h1>

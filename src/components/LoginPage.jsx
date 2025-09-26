@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
@@ -16,9 +16,10 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const [photo, setPhoto] = useState('https://wallpapers.com/images/featured/gaming-profile-pictures-xpcd6q5uud2i45v8.jpg');
 
   const navigate = useNavigate();
+
+  const defaultPhoto = 'https://wallpapers.com/images/featured/gaming-profile-pictures-xpcd6q5uud2i45v8.jpg';
 
   // Define the toggleMode function
   const toggleMode = () => {
@@ -69,13 +70,13 @@ const LoginPage = () => {
         JSON.stringify({
           userId: user.uid,
           userName: isLogin ? user.displayName || username : username,
-          profilePhoto: user.photoURL || photo,
+          profilePhoto: user.photoURL || defaultPhoto,
           isAuth: true,
         })
       );
 
       // Initialize the user's score
-      await initializeUserScore(user.uid, username || user.displayName || "Anonymous", photo);
+      await initializeUserScore(user.uid, username || user.displayName || "Anonymous", defaultPhoto);
 
       navigate('/Little-Bankers/dashboard');
     } catch (err) {
